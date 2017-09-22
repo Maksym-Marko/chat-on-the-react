@@ -1,0 +1,66 @@
+.mx-message_wrap{
+	display: inline-block;
+	max-width: 90%;
+	border-radius: 5px;
+	padding: 4px;
+	margin: 20px 2px;
+	margin-top: 36px;
+	float: left;
+	background: #3633c0;
+    color: #e9e5e5;
+    position: relative;
+}
+.mx-my_message{
+	float: right;
+	background: #d9e9f5;
+	color: #000;
+}
+.mx-message{
+
+}
+
+/*user*/
+.mx-user{
+    font-size: 12px;
+    display: inline-block;
+    padding: 2px 6px;
+    background: rgba(54, 51, 192, 0.46);
+    border-radius: 20px;
+    position: absolute;
+    top: -32px;
+    color: #333;
+	min-width: 102px;
+    text-align: center;
+}
+.mx-my_message .mx-user{
+	right: 0;
+	background: rgba(217, 233, 245, 0.48);
+}
+.mx-user_name{
+    margin-right: 10px;
+    font-size: 14px;
+    display: block;
+    text-align: center;
+}
+
+/*date*/
+.mx-date_wrap{
+
+}
+.mx-date{
+
+}
+.mx-date_sep{
+
+}
+.mx-time{
+
+}
+
+/*clearfix*/
+.mx-clearfix{
+	display: block;
+	width: 100%;
+	clear: both;
+	border-bottom: 1px solid #68aa5f;
+}

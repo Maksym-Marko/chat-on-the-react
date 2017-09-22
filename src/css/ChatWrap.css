@@ -1,0 +1,9 @@
+.mx-chat_wrap{
+    width: 100%;
+    max-width: 600px;
+    background-color: #168008;
+    height: 500px;
+    margin: 0px auto;
+    padding: 5px;
+    box-sizing: border-box;
+}

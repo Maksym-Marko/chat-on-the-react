@@ -1,0 +1,9 @@
+/*message*/
+.mx-message_window{
+	width: 100%;
+	display: inline-block;
+	background-color: #fff;
+    height: 400px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
