@@ -2,10 +2,21 @@ import React, {Component} from 'react';
 import '../css/Message.css';
 
 class Message extends Component{
+
 	render(){
+
+		let classMyMessage = '';
+
+		let userIdWithMessage = parseInt(this.props.userIdWithMessage);
+		let thisUserID = parseInt(this.props.thisUserID);
+
+		if(userIdWithMessage === thisUserID){
+			classMyMessage = 'mx-my_message';
+		}
+
 		return(
 			<div>
-				<div className="mx-message_wrap mx-my_message">
+				<div className={'mx-message_wrap ' + classMyMessage}>
 					<div className="mx-user">
 						<div className="mx-user_name">
 							{this.props.userName}

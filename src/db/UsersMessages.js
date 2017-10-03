@@ -42,7 +42,7 @@ const UsersMessages = [
   {
     id: 6,
     userId: 3,
-    message: 'Васями)))',
+    message: 'Пока не знаю)',
     toUserId: 1,
     date: '22.09.2017',
     time: '22:59'
