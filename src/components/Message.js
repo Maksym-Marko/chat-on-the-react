@@ -7,8 +7,8 @@ class Message extends Component{
 
 		let classMyMessage = '';
 
-		let userIdWithMessage = parseInt(this.props.userIdWithMessage);
-		let thisUserID = parseInt(this.props.thisUserID);
+		let userIdWithMessage = parseInt(this.props.userIdWithMessage, 10);
+		let thisUserID = parseInt(this.props.thisUserID, 10);
 
 		if(userIdWithMessage === thisUserID){
 			classMyMessage = 'mx-my_message';

@@ -4,11 +4,19 @@ import Message from './Message.js';
 
 class MessageWindow extends Component{
 
+	parseIntString(n){
+		return parseInt(n, 10);
+	}
+
 	render(){		
 
 		let messagesRow = [];
 		let userName = '';
 		let userID = 0;
+
+		let _thisUserID = this.parseIntString(this.props.thisUserID);
+
+		
 
 		this.props.messages.forEach( (message) => {
 
@@ -17,21 +25,55 @@ class MessageWindow extends Component{
 				if(message.userId === el.id){
 					userName = el.userName;
 					userID = el.id;
-				}				
+					return true;
+				}
+				return false;	
 			} );
 
 			// push in array
-			messagesRow.push(
-				<Message key={message.id}
-					userName={userName}
-					dateMessage={message.date}
-					timeMessage={message.time}
-					message={message.message}
-					userIdWithMessage={userID} // id user in message
-					thisUserID={this.props.thisUserID}  // id user with router
+			let _userID = this.parseIntString(userID);
+			let _toUserId = this.parseIntString(message.toUserId);
+			let userIdFromMessage = this.parseIntString(message.userId);
 
-				/>
-			);
+			//if(selectedUser === 0){
+				if(
+					_thisUserID === _userID ||
+					_thisUserID === _toUserId ||
+					_thisUserID === userIdFromMessage
+				){
+					messagesRow.push(
+						<Message key={message.id}
+							userName={userName}
+							dateMessage={message.date}
+							timeMessage={message.time}
+							message={message.message}
+							userIdWithMessage={userID} // id user in message
+							thisUserID={this.props.thisUserID}  // id user with router
+
+						/>
+					);
+				}	
+			//} else{
+			//	if( _thisUserID === userIdFromMessage &&
+			//		selectedUser === _toUserId
+			//	){
+
+					// messagesRow.push(
+					// 	<Message key={message.id}
+					// 		userName={userName}
+					// 		dateMessage={message.date}
+					// 		timeMessage={message.time}
+					// 		message={message.message}
+					// 		userIdWithMessage={userID} // id user in message
+					// 		thisUserID={this.props.thisUserID}  // id user with router
+
+					// 	/>
+					// );
+
+			//	}
+			//}
+
+					
 		} );
 		return(
 			<div className="mx-message_window">

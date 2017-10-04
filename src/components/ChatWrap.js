@@ -3,10 +3,9 @@ import '../css/ChatWrap.css';
 
 import MessageWindow from './MessageWindow.js';
 import FormBlock from './FormBlock.js';
+import SelectUser from './SelectUser.js';
 
-class ChatWrap extends Component{
-
-	
+class ChatWrap extends Component{	
 
 	render(){
 
@@ -20,7 +19,13 @@ class ChatWrap extends Component{
 					messages={this.props.messages}
 					users={this.props.users}
 					thisUserID={userId}
-				/>					
+				/>
+				<SelectUser
+					users={this.props.users}
+					thisUserID={userId}
+					selectedUser={this.props.selectedUser}
+					handleSelectUserListParent={this.props.handleSelectUserListParent}
+				/>
 				<FormBlock
 					handleSubmitParent={this.props.handleSubmitParent}
 					thisUserID={userId}

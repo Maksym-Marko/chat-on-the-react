@@ -5,8 +5,12 @@ class FormBlock extends Component{
 	handleSubmit(e){	
 
 		let _message = document.getElementById('mxForm').value;
-		let _fromUserID = this.props.thisUserID;
-		this.props.handleSubmitParent(_message, _fromUserID);
+		_message.trim();
+
+		if(_message !== ''){
+			let _fromUserID = this.props.thisUserID;
+			this.props.handleSubmitParent(_message, _fromUserID);
+		}		
 
 		e.preventDefault();
 		

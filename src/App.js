@@ -15,11 +15,27 @@ class App extends Component {
 		super(props);
 
 		this.handleSubmitMessage = this.handleSubmitMessage.bind(this);
+		this.handleSelectedUser = this.handleSelectedUser.bind(this);
 
 		this.state = {
 			messages: props.messages,
-			users: props.users
+			users: props.users,
+			selectedUser: null
 		};
+	}
+
+	componentWillMount(){
+		let users = this.state.users;
+		let arrSelects = [];
+		users.map( (el) => {			
+			arrSelects.push({
+				idUser: el.id, // user id 'John'
+				selectUserId: 0, // user 'John' selected user id from list
+				selectUserName: 'Не выбран'
+			});
+		} );
+		this.setState({selectedUser: arrSelects});
+		
 	}
 
 	handleSubmitMessage(_message, _fromUserID){
@@ -28,9 +44,9 @@ class App extends Component {
 
 		let IDmessage = arrayMessage.length+1;
 
-		let fromUserID = parseInt(_fromUserID);
+		let fromUserID = parseInt(_fromUserID, 10);
 
-		console.log(IDmessage);
+		//console.log(IDmessage);
 
 		arrayMessage.push({
 		    id: IDmessage,
@@ -46,6 +62,27 @@ class App extends Component {
 		});
 
 		//console.log(this.state);
+
+	}
+
+	handleSelectedUser(_thisUser, _valueSelect, _idSelectedUser){
+		//console.log(_thisUser +' - '+ _valueSelect +' - '+ _idSelectedUser);
+
+
+		let arrSelectedUser = this.state.selectedUser;
+
+		arrSelectedUser.map( (el) => {
+			if(_thisUser === el.idUser){
+				el.selectUserId = _idSelectedUser;
+				el.selectUserName = _valueSelect;				
+			}
+		} );
+		//console.log(arrSelectedUser);
+
+
+		this.setState({
+			messages: arrSelectedUser 
+		});
 
 	}
 
@@ -76,6 +113,8 @@ class App extends Component {
 			                	messages={this.state.messages}
 			                	users={this.state.users}
 			                	handleSubmitParent={this.handleSubmitMessage}
+			                	selectedUser={this.state.selectedUser} // selected users
+			                	handleSelectUserListParent={this.handleSelectedUser} // change select users
 			                /> }
 				        />
 		            </Switch>
