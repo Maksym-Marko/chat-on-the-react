@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import '../css/FormBlock.css';
 
 class FormBlock extends Component{
 
@@ -7,11 +8,32 @@ class FormBlock extends Component{
 		let _message = document.getElementById('mxForm').value;
 		_message.trim();
 
-		if(_message !== ''){
-			let _fromUserID = this.props.thisUserID;
-			this.props.handleSubmitParent(_message, _fromUserID);
+		// from user
+		let _fromUserID = this.props.thisUserID;
+		_fromUserID = parseInt(_fromUserID, 10);
+
+		// to user
+		let _toUserId = 0;
+		this.props.selectedUser.map( (toUserEl) => {
+			if(_fromUserID === toUserEl.idUser){
+				_toUserId = toUserEl.selectUserId;
+				return true;
+			}
+			return false;		
+		} );
+
+		if(_message !== ''){			
+			this.props.handleSubmitParent(_message, _fromUserID, _toUserId);
 		}		
 
+		// clear textarea
+		document.getElementById('mxForm').value = '';
+
+		// scroll to bottom
+		setTimeout( () => {
+			document.getElementById('mxMessageWindow').scrollTop = document.getElementById('mxMessageWindow').scrollHeight;
+		}, 500 );
+				
 		e.preventDefault();
 		
 	}

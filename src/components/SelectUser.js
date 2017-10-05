@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import '../css/SelectUser.css';
 
 class SelectUser extends Component{
 
@@ -10,7 +11,6 @@ class SelectUser extends Component{
 
 		for(let i=0; i < elSelect.options.length; i++){
 			if(elSelect.options[i].selected === true){
-				//console.log(elSelect.options[i].id);
 
 				valueSelect = elSelect.options[i].value;
 				idSelectedUser = elSelect.options[i].id;
@@ -23,6 +23,11 @@ class SelectUser extends Component{
 		thisUser = parseInt(thisUser, 10);
 
 		this.props.handleSelectUserListParent(thisUser, valueSelect, idSelectedUser);
+
+		// scroll to bottom
+		setTimeout( () => {
+			document.getElementById('mxMessageWindow').scrollTop = document.getElementById('mxMessageWindow').scrollHeight;
+		}, 500 );
 		
 	}
 
@@ -34,20 +39,19 @@ class SelectUser extends Component{
 
 		// get select user from state
 		let valueSelectedUser = '';
-		//let idSelectedUser = 0;
 		this.props.selectedUser.map( (el) => {
 			if(activeUser === el.idUser){
 				valueSelectedUser = el.selectUserName;
-				//idSelectedUser = el.selectUserId;
-				//console.log(el);
 				return true;
 			}			
 			return false;
 		} );
-		
 
 		// list users
 		let selectUser = [];
+		selectUser.push(
+			<option key="0" id="0" value="Собеседник не выбран">Собеседник не выбран</option>
+		);
 
 		allUsers.forEach( (user) =>{
 			
@@ -61,10 +65,8 @@ class SelectUser extends Component{
 
 		} );
 
-		//console.log(activeUser);
 		return(
-			<select value="{valueSelectedUser}" id="mxSelect" onChange={this.handleSelectUserList.bind(this)}>
-				<option>{valueSelectedUser}</option>
+			<select className="mx-select" id="mxSelect" onChange={this.handleSelectUserList.bind(this)}>
 				{selectUser}
 			</select>
 		);

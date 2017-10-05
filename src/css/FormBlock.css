@@ -1,0 +1,21 @@
+.mx-form_block textarea{
+	width: 400px;
+    height: 51px;
+    margin: 0px auto;
+    display: block;
+    resize: none
+}
+.mx-form_block button{
+	display: block;
+    width: 100px;
+    padding: 5px;
+    margin: 12px auto;
+    background: #beeb85;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+.mx-form_block button:hover{
+	color: #fff;
+	background: #608037;
+}

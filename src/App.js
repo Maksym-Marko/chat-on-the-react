@@ -31,14 +31,27 @@ class App extends Component {
 			arrSelects.push({
 				idUser: el.id, // user id 'John'
 				selectUserId: 0, // user 'John' selected user id from list
-				selectUserName: 'Не выбран'
+				selectUserName: 'Собеседник не выбран'
 			});
+			return true;
 		} );
 		this.setState({selectedUser: arrSelects});
 		
 	}
 
-	handleSubmitMessage(_message, _fromUserID){
+	getDateSend(){
+		let today = new Date();
+		return today.toISOString().substring(0, 10);		
+	}
+
+	getTimeSend(){
+		let today = new Date();
+		let thisTime = today.toTimeString();
+		thisTime = thisTime.split(' ')[0];
+		return thisTime;
+	}
+
+	handleSubmitMessage(_message, _fromUserID, _toUserId){
 
 		let arrayMessage = this.state.messages;
 
@@ -46,42 +59,36 @@ class App extends Component {
 
 		let fromUserID = parseInt(_fromUserID, 10);
 
-		//console.log(IDmessage);
-
 		arrayMessage.push({
 		    id: IDmessage,
 		    userId: fromUserID,
 		    message: _message,
-		    toUserId: 1,
-		    date: '25.09.2017',
-		    time: '15:33'
+		    toUserId: _toUserId,
+		    date: this.getDateSend(),
+		    time: this.getTimeSend()
 	 	});
 
 		this.setState({
 			messages: arrayMessage 
 		});
 
-		//console.log(this.state);
-
 	}
 
 	handleSelectedUser(_thisUser, _valueSelect, _idSelectedUser){
-		//console.log(_thisUser +' - '+ _valueSelect +' - '+ _idSelectedUser);
-
 
 		let arrSelectedUser = this.state.selectedUser;
 
 		arrSelectedUser.map( (el) => {
 			if(_thisUser === el.idUser){
 				el.selectUserId = _idSelectedUser;
-				el.selectUserName = _valueSelect;				
+				el.selectUserName = _valueSelect;
+				return true;				
 			}
+			return false;
 		} );
-		//console.log(arrSelectedUser);
-
 
 		this.setState({
-			messages: arrSelectedUser 
+			selectedUser: arrSelectedUser 
 		});
 
 	}

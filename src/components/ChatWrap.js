@@ -11,14 +11,13 @@ class ChatWrap extends Component{
 
 		let userId = this.props.match.params.id;
 
-		//console.log(this.props.match.params.id);
-
 		return(
 			<div className="mx-chat_wrap">
 				<MessageWindow
 					messages={this.props.messages}
 					users={this.props.users}
 					thisUserID={userId}
+					selectedUser={this.props.selectedUser}
 				/>
 				<SelectUser
 					users={this.props.users}
@@ -29,6 +28,7 @@ class ChatWrap extends Component{
 				<FormBlock
 					handleSubmitParent={this.props.handleSubmitParent}
 					thisUserID={userId}
+					selectedUser={this.props.selectedUser}
 				/>
 			</div>
 		);
